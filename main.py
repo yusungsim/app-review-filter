@@ -2,9 +2,10 @@ from pprint import pprint
 from scraper.scraper import store_reviews
 from targets import parse_apps
 from data_loader import get_reviews 
+from lexicon import gather_lexicon, dump_lexicon
 import spacy
 
-targetfile = 'target-apps'
+targetfile = 'paid-top-45-Nov-30'
 appnames = parse_apps(targetfile)
 
 for appname in appnames:
@@ -15,11 +16,19 @@ reviews = get_reviews(app0)
 
 # print(app0, reviews0)
 
-review0 = reviews[3]
-print(review0)
+lex_dict = dict()
+for app in appnames:
+    reviews = get_reviews(app)
+    gather_lexicon(lex_dict, reviews)
 
-nlp = spacy.load("en_core_web_sm")
-doc = nlp(review0)
+dump_lexicon(lex_dict, 'lexicon.csv')
 
-for token in doc:
-    print(token, token.lemma_, token.pos_)
+"""
+for review in reviews:
+    print(f'Review: "{review}"')
+    doc = nlp(review)
+    for tok in doc:
+        print(tok.lemma_, tok.pos_, end=" | ")
+    print()
+    input()
+"""
