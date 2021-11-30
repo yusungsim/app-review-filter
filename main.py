@@ -11,17 +11,23 @@ appnames = parse_apps(targetfile)
 for appname in appnames:
     store_reviews(appname)
 
-app0 = appnames[0]
-reviews = get_reviews(app0)
+nouns = ['NOUN', 'PROPN']
+verbs = ['VERB', 'AUX']
+adjectives = ['ADJ']
+adverbs = ['ADV']
 
-# print(app0, reviews0)
-
-lex_dict = dict()
+lex_dict_kinds = [dict(), dict(), dict(), dict()]
 for app in appnames:
     reviews = get_reviews(app)
-    gather_lexicon(lex_dict, reviews)
+    gather_lexicon(lex_dict_kinds[0], reviews, nouns)
+    gather_lexicon(lex_dict_kinds[1], reviews, verbs)
+    gather_lexicon(lex_dict_kinds[2], reviews, adjectives)
+    gather_lexicon(lex_dict_kinds[3], reviews, adverbs)
 
-dump_lexicon(lex_dict, 'lexicon.csv')
+dump_lexicon(lex_dict_kinds[0], 'lexicon_noun.csv')
+dump_lexicon(lex_dict_kinds[1], 'lexicon_verb.csv')
+dump_lexicon(lex_dict_kinds[2], 'lexicon_adjective.csv')
+dump_lexicon(lex_dict_kinds[3], 'lexicon_adverbs.csv')
 
 """
 for review in reviews:

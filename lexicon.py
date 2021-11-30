@@ -1,9 +1,7 @@
 import spacy
 
-def gather_lexicon(lex_dict, sent_list):
+def gather_lexicon(lex_dict, sent_list, target_pos):
     nlp = spacy.load("en_core_web_sm")
-
-    target_pos = ['NOUN', 'PROPN']
 
     def add_lexicon(word):
         if word in lex_dict.keys():
