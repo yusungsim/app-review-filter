@@ -1,4 +1,5 @@
 import spacy
+from data_loader import get_reviews
 
 def gather_lexicon(lex_dict, sent_list, target_pos):
     nlp = spacy.load("en_core_web_sm")
@@ -21,3 +22,21 @@ def dump_lexicon(lex_dict, filename):
         for (word, count) in lex_sorted:
             f.write(f'{word}, {count}\n') # csv format     
 
+def gen_lexicons(appnames):
+    nouns = ['NOUN', 'PROPN']
+    verbs = ['VERB', 'AUX']
+    adjectives = ['ADJ']
+    adverbs = ['ADV']
+
+    lex_dict_kinds = [dict(), dict(), dict(), dict()]
+    for app in appnames:
+        reviews = get_reviews(app)
+        gather_lexicon(lex_dict_kinds[0], reviews, nouns)
+        gather_lexicon(lex_dict_kinds[1], reviews, verbs)
+        gather_lexicon(lex_dict_kinds[2], reviews, adjectives)
+        gather_lexicon(lex_dict_kinds[3], reviews, adverbs)
+
+    dump_lexicon(lex_dict_kinds[0], 'lex/lexicon_noun.csv')
+    dump_lexicon(lex_dict_kinds[1], 'lex/lexicon_verb.csv')
+    dump_lexicon(lex_dict_kinds[2], 'lex/lexicon_adjective.csv')
+    dump_lexicon(lex_dict_kinds[3], 'lex/lexicon_adverbs.csv')
