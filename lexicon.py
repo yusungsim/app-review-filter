@@ -1,4 +1,5 @@
 import spacy
+from tqdm import tqdm
 from data_loader import get_reviews
 
 def gather_lexicon(lex_dict, sent_list, target_pos):
@@ -29,7 +30,7 @@ def gen_lexicons(appnames):
     adverbs = ['ADV']
 
     lex_dict_kinds = [dict(), dict(), dict(), dict()]
-    for app in appnames:
+    for app in tqdm(appnames):
         reviews = get_reviews(app)
         gather_lexicon(lex_dict_kinds[0], reviews, nouns)
         gather_lexicon(lex_dict_kinds[1], reviews, verbs)
