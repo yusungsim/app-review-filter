@@ -36,6 +36,7 @@ def store_matches(pattern, doc, matches, filename):
         for match_id, token_ids in matches:
             for i in range(len(token_ids)):
                 f.write(doc[token_ids[i]].text + ", ")
+            f.write(doc.text)
             f.write("\n")
 
 # matchers for each pattern
@@ -50,3 +51,4 @@ def verb_match_list(appname, reviews):
 def adj_match_list(appname, reviews):
     store_match_list(appname+"_ADJ", adj_pattern, reviews,
             column=['NOUN', 'ADJ'])
+

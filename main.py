@@ -9,6 +9,7 @@ from targets import parse_apps
 from lexicon import gen_lexicons
 from data_loader import get_reviews
 from matcher.matcher import * 
+from matcher.description import *
 
 # generate list of target app names
 targetfile = 'paid-top-45-Nov-30'
@@ -32,3 +33,11 @@ for appname in tqdm(appnames):
     adj_match_list(appname, reviews)
 
 # parse the patterns into semantic description, and 
+target_appname = appnames[0]
+print(f"Generating semantic db for {target_appname}...")
+target_db = make_desc_db(target_appname)
+
+# result
+target_lex = 'game'
+print(f"Description of {target_lex} in {target_appname} reviews.")
+pprint(target_db[target_lex])
