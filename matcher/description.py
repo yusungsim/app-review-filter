@@ -46,7 +46,7 @@ def make_desc_db(appname):
 
     db = mk_desc_db()
 
-    for name, parser in tqdm(zip(pattern_names, pattern_parsers)):
+    for name, parser in zip(pattern_names, pattern_parsers):
         f = open("matches/" + appname + "_" + name + ".csv", 'r')
         for line in f:
             desc = parser(line)

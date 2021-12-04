@@ -17,23 +17,23 @@ appnames = parse_apps(targetfile)
 
 # generate review data for each app  
 print("Generating Review data...")
-for appname in tqdm(appnames):
-    store_reviews(appname)
+#for appname in tqdm(appnames):
+#    store_reviews(appname)
 
 # generate lexicon csv files on `lex` directory
 print("Generating lexicons...")
-gen_lexicons(appnames)
+#gen_lexicons(appnames)
 
 # generate matched patterns on `matches` directory
 print("Generating matches...")
-for appname in tqdm(appnames):
-    reviews = get_reviews(appname)
-    aux_match_list(appname, reviews)
-    verb_match_list(appname, reviews)
-    adj_match_list(appname, reviews)
+#for appname in tqdm(appnames):
+#    reviews = get_reviews(appname)
+#    aux_match_list(appname, reviews)
+#    verb_match_list(appname, reviews)
+#    adj_match_list(appname, reviews)
 
 # parse the patterns into semantic description, and 
-target_appname = appnames[0]
+target_appname = appnames[1]
 print(f"Generating semantic db for {target_appname}...")
 target_db = make_desc_db(target_appname)
 
