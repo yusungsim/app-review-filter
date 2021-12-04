@@ -2,7 +2,7 @@ from tqdm import tqdm
 
 # defines partial description semantic
 def description(target, descriptor):
-    return (target.lower(), descriptor.lower())
+    return (target.strip().lower(), descriptor.strip().lower())
 
 # parse each pattern to descriptor
 def parse_aux(aux, attr, adj, nsubj):
