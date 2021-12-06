@@ -15,8 +15,8 @@ def has_words(words, text):
     return False
 
 if __name__ == "__main__":
-    appname = 'com.sega.soccer.manager' 
-    reviews = get_reviews(appname)
+    review = input() 
+    reviews = [review]
     target_words = [
         'game',
         'app',
@@ -26,13 +26,13 @@ if __name__ == "__main__":
         'bug',
         'story',
         'character',
-        'graphic',
+        'graphics',
         'update',
     ]
 
     for review in reviews:
-        if not has_words(target_words, review):
-            continue
+        #if not has_words(target_words, review):
+        #    continue
         print(review)
         visualize_text(review)
         input()

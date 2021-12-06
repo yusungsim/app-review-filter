@@ -22,8 +22,8 @@ for appname in tqdm(appnames):
     store_reviews(appname)
 
 # generate lexicon csv files on `lex` directory
-print("Generating lexicons...")
-gen_lexicons(appnames)
+#print("Generating lexicons...")
+#gen_lexicons(appnames)
 
 # generate matched patterns on `matches` directory
 print("Generating matches...")
@@ -43,7 +43,7 @@ def main():
     db = make_desc_db(appname)
     
     print(f'Summary of Description Semantics for each lexicon')
-    lex_list = ['game', 'app', 'story', 'graphics', 'bug']
+    lex_list = ['game', 'app', 'story', 'graphics', 'bug', 'price', 'balance']
     for lex in lex_list:
         print_lex_db(lex, db)
 

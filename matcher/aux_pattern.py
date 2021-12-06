@@ -13,7 +13,7 @@ aux_pattern = [
         "LEFT_ID": "aux_attr",
         "REL_OP": ">",
         "RIGHT_ID": "aux_attr_adj",
-        "RIGHT_ATTRS": {"DEP": "amod"},
+        "RIGHT_ATTRS": {"DEP": {"IN": ["acomp", "amod"]}},
     },
     {
         "LEFT_ID": "aux",
