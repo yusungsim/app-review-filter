@@ -3,6 +3,7 @@ from .aux_pattern import aux_pattern
 from .verb_pattern import verb_pattern
 from .adj_pattern import adj_pattern
 from spacy.matcher import DependencyMatcher
+from tqdm import tqdm
 
 nlp = spacy.load("en_core_web_sm")
 matcher = DependencyMatcher(nlp.vocab)
@@ -52,3 +53,7 @@ def adj_match_list(appname, reviews):
     store_match_list(appname+"_ADJ", adj_pattern, reviews,
             column=['NOUN', 'ADJ'])
 
+def all_match_list(appname, reviews):
+    fs = [aux_match_list, verb_match_list, adj_match_list]
+    for f in tqdm(fs):
+        f(appname, reviews)

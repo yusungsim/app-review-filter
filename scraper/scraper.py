@@ -1,5 +1,6 @@
 from google_play_scraper import Sort, reviews_all, reviews
 import os
+from tqdm import tqdm
 
 # number of reviews fetched per app
 REVIEW_COUNT = 1000
@@ -25,11 +26,12 @@ def store_reviews(appname):
     ##print('store_reviews: writing reviews into file')
     datapath = 'data/' + appname 
     if (os.path.isfile(datapath)):
+        print('>>> cached review data found; skipping fetching process...')
         pass
     else: 
         revs = get_reviews(appname)
         with open(datapath, 'w') as f:
-            for rev in revs:
+            for rev in tqdm(revs):
                 f.write(rev)
                 f.write('\n')
     #print('store_review: returning')
